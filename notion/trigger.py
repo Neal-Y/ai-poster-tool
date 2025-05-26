@@ -62,6 +62,8 @@ class NotionTrigger:
                 title = self._extract_title(properties)
                 tags = self._extract_tags(properties)
                 prompt = self._extract_prompt(properties)
+                if not prompt:
+                    prompt = f"{title}\n{page_content}"
 
                 results.append({
                     "id": page_id,
