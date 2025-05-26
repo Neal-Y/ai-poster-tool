@@ -20,11 +20,11 @@ def main():
         prompt_hash, decision = review_prompt(prompt)
 
         if decision == "posted":
-            trigger.update_note_status(note['id'], "Published")
+            trigger.mark_as_published(note['id'], post_url="")  # 可之後串 IG/Threads
         elif decision == "skipped":
-            trigger.update_note_status(note['id'], "Skipped")
+            trigger.mark_as_skipped(note['id'])
         else:
-            print("🔁 重產未更新狀態")
+            trigger.mark_for_retry(note['id'])  # 重產但尚未發佈
 
 if __name__ == "__main__":
     main()
