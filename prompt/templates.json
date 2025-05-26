@@ -1,0 +1,56 @@
+{
+  "default": {
+    "prefix": "Create a professional, visually appealing image for social media that represents: ",
+    "suffix": " Style: clean, modern, minimalist, suitable for Instagram.",
+    "parameters": {
+      "quality": "high quality, detailed, sharp focus",
+      "lighting": "soft lighting, balanced exposure",
+      "composition": "centered composition, rule of thirds"
+    }
+  },
+  "quote": {
+    "prefix": "Create an inspirational quote image with text that says: ",
+    "suffix": " Style: elegant typography, motivational, shareable.",
+    "parameters": {
+      "background": "subtle gradient or abstract background",
+      "text": "clear, readable font, prominent placement",
+      "mood": "inspiring, uplifting, positive"
+    }
+  },
+  "tech": {
+    "prefix": "Create a tech-focused image that illustrates: ",
+    "suffix": " Style: futuristic, digital, tech-oriented.",
+    "parameters": {
+      "elements": "digital elements, tech symbols, code snippets",
+      "colors": "blue tones, high contrast, glowing accents",
+      "mood": "innovative, cutting-edge, professional"
+    }
+  },
+  "nature": {
+    "prefix": "Create a nature-themed image that depicts: ",
+    "suffix": " Style: organic, serene, environmental.",
+    "parameters": {
+      "elements": "natural landscapes, plants, wildlife",
+      "colors": "earthy tones, greens, natural lighting",
+      "mood": "peaceful, calming, harmonious"
+    }
+  },
+  "business": {
+    "prefix": "Create a business-oriented image representing: ",
+    "suffix": " Style: corporate, professional, clean.",
+    "parameters": {
+      "elements": "office environment, professional setting, business concepts",
+      "colors": "neutral tones, corporate blues, clean whites",
+      "mood": "professional, trustworthy, authoritative"
+    }
+  },
+  "creative": {
+    "prefix": "Create an artistic, creative image expressing: ",
+    "suffix": " Style: artistic, expressive, unique.",
+    "parameters": {
+      "elements": "abstract shapes, artistic elements, creative concepts",
+      "colors": "vibrant, contrasting, expressive palette",
+      "mood": "imaginative, inspiring, thought-provoking"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+//dont mkdir pb MDFK directly do
+// root path do this
+// ❯ protoc \
+//  -I=image/proto \
+//  --go_out=image/server/ \
+//  --go-grpc_out=image/server/ \
+//  image/proto/image.proto
+
+// python
+//python -m grpc_tools.protoc \
+//  -Iimage/proto \
+//  --python_out=image/client \
+//  --grpc_python_out=image/client \
+//  image/proto/image.proto
+
+syntax = "proto3";
+
+package image;
+
+option go_package = "./pb";
+
+service ImageService {
+  rpc GenerateImage (ImageRequest) returns (ImageResponse);
+  rpc GenerateBatch (BatchRequest) returns (BatchResponse); // ✅ 支援多筆產圖
+}
+
+message ImageRequest {
+  string prompt = 1;
+}
+
+message ImageResponse {
+  bytes image_data = 1;     // 可為 nil（因為使用 URL 模式）
+  string prompt_hash = 2;
+  string file_type = 3;
+  string image_url = 4;
+}
+
+message BatchRequest {
+  repeated string prompts = 1;
+}
+
+message BatchItem {
+  string prompt = 1;
+  string prompt_hash = 2;
+  bytes image_data = 3;
+  string file_type = 4;
+  string error = 5;
+}
+
+message BatchResponse {
+  repeated BatchItem items = 1;
+}

@@ -1,0 +1,13 @@
+# Core dependencies
+notion-client>=2.0.0
+pillow>=9.0.0
+grpcio>=1.50.0
+grpcio-tools>=1.50.0
+protobuf>=4.0.0
+
+# Instagram API (unofficial)
+instagrapi>=1.16.30
+
+# Utilities
+pyyaml>=6.0
+python-dotenv>=0.19.0

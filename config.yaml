@@ -1,0 +1,38 @@
+# AI Poster Configuration
+
+# Notion settings
+notion:
+  database_id: ${NOTION_DATABASE_ID}
+  poll_interval_seconds: 60
+
+# Image generation settings
+image:
+  server_address: "localhost:50051"
+  worker_count: 5
+  queue_size: 100
+  rate_limit_per_minute: 50
+  cache_enabled: true
+  cache_ttl_minutes: 60
+
+# OpenAI settings
+openai:
+  model: "dall-e-3"
+  size: "1024x1024"
+  quality: "standard"
+
+# Instagram settings
+instagram:
+  auto_publish: false  # Set to true to enable auto-publishing without review
+
+# Logging settings
+logging:
+  level: "info"  # debug, info, warn, error
+  file: "logs/ai_poster.log"
+  max_size_mb: 10
+  max_backups: 5
+  max_age_days: 30
+
+# History tracking
+history:
+  file: "history.csv"
+  max_entries: 1000
