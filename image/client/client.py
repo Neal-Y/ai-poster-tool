@@ -80,11 +80,3 @@ def generate_batch(prompts: List[str]) -> List[Tuple[str, str, str]]:
         results.append((item.prompt_hash, item.prompt, filepath))
 
     return results
-
-if __name__ == "__main__":
-    prompts = [
-        "一隻穿太空裝的貓在火星散步",
-        "日式老街黃昏風景插畫",
-        "充滿科技感的未來城市建築"
-    ]
-    generate_batch(prompts)
