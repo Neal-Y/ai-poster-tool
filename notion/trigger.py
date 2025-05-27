@@ -136,35 +136,12 @@ class NotionTrigger:
                 page_id=page_id,
                 properties={
                     "Status": {"select": {"name": "Published"}},
-                    "Process": {"checkbox": False},
-                    "Post URL": {"url": post_url}
+                    "Post URL": {"url": None},
                 }
             )
             logger.info(f"標記 {page_id} 為 Published")
         except Exception as e:
             logger.exception(f"標記 {page_id} 為 Published 失敗: {str(e)}")
-
-    def mark_as_failed(self, page_id: str, error: str) -> None:
-        """將筆記標記為產圖失敗"""
-        try:
-            self.notion.pages.update(
-                page_id=page_id,
-                properties={
-                    "Status": {"select": {"name": "Failed"}},
-                    "Process": {"checkbox": False},
-                    "Error": {
-                        "rich_text": [
-                            {
-                                "type": "text",
-                                "text": {"content": error[:2000]}
-                            }
-                        ]
-                    }
-                }
-            )
-            logger.info(f"標記 {page_id} 為 Failed")
-        except Exception as e:
-            logger.exception(f"標記 {page_id} 為 Failed 失敗: {str(e)}")
 
     def mark_as_skipped(self, page_id: str) -> None:
         """將筆記標記為略過"""
@@ -173,26 +150,11 @@ class NotionTrigger:
                 page_id=page_id,
                 properties={
                     "Status": {"select": {"name": "Skipped"}},
-                    "Process": {"checkbox": False}
                 }
             )
             logger.info(f"標記 {page_id} 為 Skipped")
         except Exception as e:
             logger.exception(f"標記 {page_id} 為 Skipped 失敗: {str(e)}")
-
-    def mark_as_reviewed(self, page_id: str) -> None:
-        """將筆記標記為已審核（但尚未發佈）"""
-        try:
-            self.notion.pages.update(
-                page_id=page_id,
-                properties={
-                    "Status": {"select": {"name": "Reviewed"}},
-                    "Process": {"checkbox": False}
-                }
-            )
-            logger.info(f"標記 {page_id} 為 Reviewed")
-        except Exception as e:
-            logger.exception(f"標記 {page_id} 為 Reviewed 失敗: {str(e)}")
 
     def mark_for_retry(self, page_id: str) -> None:
         """將筆記標記為 Retry 以便再次處理"""

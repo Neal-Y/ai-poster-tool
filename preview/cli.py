@@ -2,36 +2,19 @@ from image.client.client import generate_image, generate_batch
 from utils.history import record_decision
 from PIL import Image
 
-def preview_image(filepath):
+def preview_image(filepath: str):
     img = Image.open(filepath)
     img.show()
 
-def review_prompt(prompt: str) -> tuple[str, str]:
-    filepath, prompt_hash = generate_image(prompt)
-    preview_image(filepath)
-
-    while True:
-        decision = input("\n是否發佈這張圖片？ [Y] 發佈 / [R] 重產 / [S] 略過：").strip().lower()
-        if decision in ["y", "r", "s"]:
-            break
-
-    if decision == "y":
-        print("📤 已記錄：發佈")
-        record_decision(prompt_hash, "posted")
-    elif decision == "s":
-        print("❌ 已記錄：略過")
-        record_decision(prompt_hash, "skipped")
-    elif decision == "r":
-        print("🔁 重新產圖...")
-        return review_prompt(prompt)
-
-    return prompt_hash, decision
-
-def review_prompt_batch(prompts: list[str]) -> list[tuple[str, str]]:
-    responses = generate_batch(prompts)
+def review_prompt_batch(prompts: list[tuple[str, str]]) -> list[tuple[str, str]]:
     results = []
+    ids = [note_id for note_id, _ in prompts]
+    prompt_texts = [p for _, p in prompts]
 
-    for prompt, prompt_hash, filepath in responses:
+    response_list = generate_batch(prompt_texts)
+
+    for i, (prompt_hash, prompt, filepath) in enumerate(response_list):
+        note_id = ids[i]
         preview_image(filepath)
 
         while True:
@@ -40,17 +23,18 @@ def review_prompt_batch(prompts: list[str]) -> list[tuple[str, str]]:
                 break
 
         if decision == "y":
+            print("📤 已記錄：發佈")
             record_decision(prompt_hash, "posted")
         elif decision == "s":
+            print("❌ 已記錄：略過")
             record_decision(prompt_hash, "skipped")
         elif decision == "r":
-            print("🔁 重新產圖...")
-            # 單張重產
-            new_hash, new_file = generate_image(prompt)
+            print("🔁 重新產圖中...")
+            new_file, new_hash = generate_image(prompt)
             preview_image(new_file)
             record_decision(new_hash, "posted")
-            prompt_hash = new_hash
 
-        results.append((prompt_hash, decision))
+        status_map = {"y": "posted", "s": "skipped", "r": "retry"}
+        results.append((note_id, status_map[decision]))
 
     return results
