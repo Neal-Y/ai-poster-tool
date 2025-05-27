@@ -63,39 +63,37 @@ ai_poster/
 ├── notion/
 │   └── trigger.py                 # 擷取待處理筆記
 ├── prompt/
-│   ├── engine.py                  # 組 prompt 與風格模板
-│   └── templates.json             # 提示詞模板配置
+│   ├── engine.py                  # 組 prompt 與風格模板 (TBD)
+│   └── templates.json             # 提示詞模板配置 (TBD)
 ├── image/
 │   ├── client/                    # Python gRPC client
 │   │   ├── client.py
 │   │   ├── image.proto
 │   │   ├── image_pb2.py
 │   │   └── image_pb2_grpc.py
-│   └── server/                    # Golang gRPC server（核心）
-│       ├── main.go                # 啟動與 router 綁定服務
-│       ├── handler.go             # gRPC handler 接收請求
-│       ├── worker_pool.go         # 任務併發核心（goroutine + channel）
-│       ├── openai.go              # OpenAI API 客戶端
-│       ├── pb/                    # gRPC 生成的 Golang pb 檔案
-│       │   ├── image.pb.go
-│       │   └── image_grpc.pb.go
-│       ├── cache.go               # 快取管理（prompt hash）
-│       ├── limiter.go             # 請求限流策略（可選）
+│   ├── server/                    # Golang gRPC server（核心）
+│   │   ├── main.go                # 啟動與 router 綁定服務
+│   │   ├── handler.go             # gRPC handler 接收請求
+│   │   ├── worker_pool.go         # 任務併發核心（goroutine + channel）(TBD)
+│   │   ├── openai.go              # OpenAI API 客戶端
+│   │   ├── pb/                    # gRPC 生成的 Golang pb 檔案
+│   │   │   ├── image.pb.go
+│   │   │   └── image_grpc.pb.go
+│   │   ├── cache.go               # 快取管理（prompt hash）(TBD)
+│   │   ├── limiter.go             # 請求限流策略（可選）(TBD)
+│   └── proto/
 │       └── image.proto            # gRPC 定義（共用）
 ├── preview/
 │   ├── cli.py                     # 人工審核 CLI 介面
 │   └── telegram_bot.py            # Telegram bot 審核介面（可選）
-│   ├── interface.py               # 發佈抽象定義
-│   ├── ig.py                      # IG 發佈實作
-│   └── threads.py                 # Threads 發佈實作（擴展）
+│   ├── interface.py               # 發佈抽象定義 (TBD) 
+│   ├── ig.py                      # IG 發佈實作 (TBD)
+│   └── threads.py                 # Threads 發佈實作（擴展）(TBD)
 ├── utils/
 │   └── history.py                 # 發佈記錄追蹤
-├── config.yaml                    # 系統參數設定檔
-├── .env.example                   # API 金鑰環境變數設定
-├── requirements.txt               # Python 套件依賴
-├── logs/                          # 日誌紀錄夾
+├── config.yaml                    # 系統參數設定檔 
 ├── output/                        # 圖片儲存目錄
-└── history.csv                    # 圖文發佈歷史記錄
+└── history.csv                    # 圖文發佈歷史記錄 
 ```
 
 
